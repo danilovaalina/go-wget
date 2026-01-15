@@ -28,8 +28,8 @@ type Downloader struct {
 	client *http.Client
 }
 
-// New создаёт новый загрузчик с заданными опциями
-func New(opts Options) *Downloader {
+// NewDownloader создаёт новый загрузчик с заданными опциями
+func NewDownloader(opts Options) *Downloader {
 	client := &http.Client{
 		Timeout: opts.Timeout,
 	}

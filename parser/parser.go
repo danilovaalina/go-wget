@@ -15,6 +15,16 @@ type ResourceURLs struct {
 	Scripts []string // <script src>
 }
 
+// GetAllResources returns all URLs in a single slice (useful for deduplication and processing)
+func (r *ResourceURLs) GetAllResources() []string {
+	all := make([]string, 0, len(r.Links)+len(r.Images)+len(r.Styles)+len(r.Scripts))
+	all = append(all, r.Links...)
+	all = append(all, r.Images...)
+	all = append(all, r.Styles...)
+	all = append(all, r.Scripts...)
+	return all
+}
+
 func ParseHTML(htmlData []byte) (*ResourceURLs, error) {
 	tokenizer := html.NewTokenizer(bytes.NewReader(htmlData))
 

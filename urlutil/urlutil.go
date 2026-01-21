@@ -1,8 +1,10 @@
-package main
+package urlutil
 
 import (
 	"fmt"
 	"net/url"
+	"path"
+	"strings"
 )
 
 // ResolveReference преобразует относительный URL в абсолютный,
@@ -26,4 +28,9 @@ func ResolveReference(base *url.URL, ref string) (*url.URL, error) {
 	}
 
 	return absolute, nil
+}
+
+func HasHTMLExtension(p string) bool {
+	ext := strings.ToLower(path.Ext(p))
+	return ext == ".html" || ext == ".htm" || ext == ""
 }
